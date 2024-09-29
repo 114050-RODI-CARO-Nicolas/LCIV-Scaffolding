@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  scaffolding-wrapper-api:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8079"
+    networks:
+      scaffolding-network:
+    depends_on:
+      - external-api
+  external-api:
+    image: someexternalimage/image:1.0.0
+    restart: always
+    networks:
+      scaffolding-network:
+
+networks:
+  scaffolding-network:
